@@ -1,0 +1,564 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		EBD62BDA2D85612D007D3D25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBD62BC02D85612C007D3D25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBD62BC72D85612C007D3D25;
+			remoteInfo = ImageToPDFConvertor;
+		};
+		EBD62BE42D85612D007D3D25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBD62BC02D85612C007D3D25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBD62BC72D85612C007D3D25;
+			remoteInfo = ImageToPDFConvertor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EBD62BC82D85612C007D3D25 /* ImageToPDFConvertor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageToPDFConvertor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD62BD92D85612D007D3D25 /* ImageToPDFConvertorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageToPDFConvertorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBD62BE32D85612D007D3D25 /* ImageToPDFConvertorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageToPDFConvertorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		EBD62BCA2D85612C007D3D25 /* ImageToPDFConvertor */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ImageToPDFConvertor;
+			sourceTree = "<group>";
+		};
+		EBD62BDC2D85612D007D3D25 /* ImageToPDFConvertorTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ImageToPDFConvertorTests;
+			sourceTree = "<group>";
+		};
+		EBD62BE62D85612D007D3D25 /* ImageToPDFConvertorUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ImageToPDFConvertorUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EBD62BC52D85612C007D3D25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBD62BD62D85612D007D3D25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBD62BE02D85612D007D3D25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EBD62BBF2D85612C007D3D25 = {
+			isa = PBXGroup;
+			children = (
+				EBD62BCA2D85612C007D3D25 /* ImageToPDFConvertor */,
+				EBD62BDC2D85612D007D3D25 /* ImageToPDFConvertorTests */,
+				EBD62BE62D85612D007D3D25 /* ImageToPDFConvertorUITests */,
+				EBD62BC92D85612C007D3D25 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EBD62BC92D85612C007D3D25 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EBD62BC82D85612C007D3D25 /* ImageToPDFConvertor.app */,
+				EBD62BD92D85612D007D3D25 /* ImageToPDFConvertorTests.xctest */,
+				EBD62BE32D85612D007D3D25 /* ImageToPDFConvertorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EBD62BC72D85612C007D3D25 /* ImageToPDFConvertor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBD62BED2D85612D007D3D25 /* Build configuration list for PBXNativeTarget "ImageToPDFConvertor" */;
+			buildPhases = (
+				EBD62BC42D85612C007D3D25 /* Sources */,
+				EBD62BC52D85612C007D3D25 /* Frameworks */,
+				EBD62BC62D85612C007D3D25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				EBD62BCA2D85612C007D3D25 /* ImageToPDFConvertor */,
+			);
+			name = ImageToPDFConvertor;
+			packageProductDependencies = (
+			);
+			productName = ImageToPDFConvertor;
+			productReference = EBD62BC82D85612C007D3D25 /* ImageToPDFConvertor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EBD62BD82D85612D007D3D25 /* ImageToPDFConvertorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBD62BF02D85612D007D3D25 /* Build configuration list for PBXNativeTarget "ImageToPDFConvertorTests" */;
+			buildPhases = (
+				EBD62BD52D85612D007D3D25 /* Sources */,
+				EBD62BD62D85612D007D3D25 /* Frameworks */,
+				EBD62BD72D85612D007D3D25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBD62BDB2D85612D007D3D25 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				EBD62BDC2D85612D007D3D25 /* ImageToPDFConvertorTests */,
+			);
+			name = ImageToPDFConvertorTests;
+			packageProductDependencies = (
+			);
+			productName = ImageToPDFConvertorTests;
+			productReference = EBD62BD92D85612D007D3D25 /* ImageToPDFConvertorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EBD62BE22D85612D007D3D25 /* ImageToPDFConvertorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBD62BF32D85612D007D3D25 /* Build configuration list for PBXNativeTarget "ImageToPDFConvertorUITests" */;
+			buildPhases = (
+				EBD62BDF2D85612D007D3D25 /* Sources */,
+				EBD62BE02D85612D007D3D25 /* Frameworks */,
+				EBD62BE12D85612D007D3D25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EBD62BE52D85612D007D3D25 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				EBD62BE62D85612D007D3D25 /* ImageToPDFConvertorUITests */,
+			);
+			name = ImageToPDFConvertorUITests;
+			packageProductDependencies = (
+			);
+			productName = ImageToPDFConvertorUITests;
+			productReference = EBD62BE32D85612D007D3D25 /* ImageToPDFConvertorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EBD62BC02D85612C007D3D25 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					EBD62BC72D85612C007D3D25 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					EBD62BD82D85612D007D3D25 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = EBD62BC72D85612C007D3D25;
+					};
+					EBD62BE22D85612D007D3D25 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = EBD62BC72D85612C007D3D25;
+					};
+				};
+			};
+			buildConfigurationList = EBD62BC32D85612C007D3D25 /* Build configuration list for PBXProject "ImageToPDFConvertor" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EBD62BBF2D85612C007D3D25;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EBD62BC92D85612C007D3D25 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EBD62BC72D85612C007D3D25 /* ImageToPDFConvertor */,
+				EBD62BD82D85612D007D3D25 /* ImageToPDFConvertorTests */,
+				EBD62BE22D85612D007D3D25 /* ImageToPDFConvertorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EBD62BC62D85612C007D3D25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBD62BD72D85612D007D3D25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBD62BE12D85612D007D3D25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EBD62BC42D85612C007D3D25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBD62BD52D85612D007D3D25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBD62BDF2D85612D007D3D25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EBD62BDB2D85612D007D3D25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBD62BC72D85612C007D3D25 /* ImageToPDFConvertor */;
+			targetProxy = EBD62BDA2D85612D007D3D25 /* PBXContainerItemProxy */;
+		};
+		EBD62BE52D85612D007D3D25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBD62BC72D85612C007D3D25 /* ImageToPDFConvertor */;
+			targetProxy = EBD62BE42D85612D007D3D25 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EBD62BEB2D85612D007D3D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EBD62BEC2D85612D007D3D25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		EBD62BEE2D85612D007D3D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ImageToPDFConvertor/ImageToPDFConvertor.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ImageToPDFConvertor/Preview Content\"";
+				DEVELOPMENT_TEAM = 8JMR96J937;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waimeng.ImageToPDFConvertor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EBD62BEF2D85612D007D3D25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ImageToPDFConvertor/ImageToPDFConvertor.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ImageToPDFConvertor/Preview Content\"";
+				DEVELOPMENT_TEAM = 8JMR96J937;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waimeng.ImageToPDFConvertor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		EBD62BF12D85612D007D3D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JVR8MYU6QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waimeng.ImageToPDFConvertorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImageToPDFConvertor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ImageToPDFConvertor";
+			};
+			name = Debug;
+		};
+		EBD62BF22D85612D007D3D25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JVR8MYU6QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waimeng.ImageToPDFConvertorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ImageToPDFConvertor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ImageToPDFConvertor";
+			};
+			name = Release;
+		};
+		EBD62BF42D85612D007D3D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JVR8MYU6QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waimeng.ImageToPDFConvertorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ImageToPDFConvertor;
+			};
+			name = Debug;
+		};
+		EBD62BF52D85612D007D3D25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JVR8MYU6QF;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.waimeng.ImageToPDFConvertorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = ImageToPDFConvertor;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EBD62BC32D85612C007D3D25 /* Build configuration list for PBXProject "ImageToPDFConvertor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBD62BEB2D85612D007D3D25 /* Debug */,
+				EBD62BEC2D85612D007D3D25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBD62BED2D85612D007D3D25 /* Build configuration list for PBXNativeTarget "ImageToPDFConvertor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBD62BEE2D85612D007D3D25 /* Debug */,
+				EBD62BEF2D85612D007D3D25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBD62BF02D85612D007D3D25 /* Build configuration list for PBXNativeTarget "ImageToPDFConvertorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBD62BF12D85612D007D3D25 /* Debug */,
+				EBD62BF22D85612D007D3D25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBD62BF32D85612D007D3D25 /* Build configuration list for PBXNativeTarget "ImageToPDFConvertorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBD62BF42D85612D007D3D25 /* Debug */,
+				EBD62BF52D85612D007D3D25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EBD62BC02D85612C007D3D25 /* Project object */;
+}
