@@ -17,43 +17,79 @@ struct ContentView: View {
                         Image(nsImage: image)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 800, height: 600)
+                            .frame(height: 100)
                             .padding()
                     }
                 }
             }
-            
+
             HStack {
                 Button("Select Images") {
                     showPicker = true
                 }
                 .padding()
-                
+
                 Button("Convert to PDF") {
                     savePDF()
                 }
                 .disabled(images.isEmpty)
                 .padding()
+
+                Button("Clear Selection") {
+                    images.removeAll()  // 🔹 Clears all selected images
+                }
+                .disabled(images.isEmpty) // 🔹 Disable when there are no images
+                .padding()
             }
         }
+        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)  // ✅ Ensure full-screen drop target
+        .contentShape(Rectangle())  // ✅ Makes the whole view interactable
         .onDrop(of: [UTType.fileURL.identifier], isTargeted: nil) { providers in
             for provider in providers {
                 provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { (data, error) in
-                    if let data = data as? Data,
-                       let url = URL(dataRepresentation: data, relativeTo: nil) {
-                        DispatchQueue.main.async {
-                            if url.startAccessingSecurityScopedResource() {
-                                if let image = NSImage(contentsOf: url) {
-                                    images.append(image)  // ✅ Append image to list
-                                }
-                                url.stopAccessingSecurityScopedResource()
+                    DispatchQueue.main.async {
+                        guard let data = data as? Data,
+                              let fileURL = URL(dataRepresentation: data, relativeTo: nil) else {
+                            print("⚠️ Failed to retrieve file URL")
+                            return
+                        }
+
+                        let fileExtension = fileURL.pathExtension.lowercased()
+                        print("🔍 File extension detected: \(fileExtension)")
+
+                        let supportedExtensions = ["jpg", "jpeg", "png", "tiff", "bmp", "gif"]
+                        if supportedExtensions.contains(fileExtension) {
+                            print("✅ Successfully dropped file: \(fileURL.path)")
+
+                            // ** Try opening file first **
+                            if FileManager.default.fileExists(atPath: fileURL.path) {
+                                print("📂 File exists, trying to access it...")
+                            } else {
+                                print("⚠️ File does not exist!")
                             }
+
+                            // ** Attempt security-scoped access **
+                            if fileURL.startAccessingSecurityScopedResource() {
+                                defer { fileURL.stopAccessingSecurityScopedResource() }  // Always stop access later
+
+                                if let image = NSImage(contentsOf: fileURL) {
+                                    images.append(image)  // ✅ Successfully loads image
+                                } else {
+                                    print("⚠️ Failed to load NSImage from URL: \(fileURL)")
+                                }
+                            } else {
+                                print("⚠️ Failed to access security-scoped resource - Check App Sandbox settings!")
+                            }
+                        } else {
+                            print("⚠️ Unsupported file type: \(fileExtension.isEmpty ? "Unknown" : fileExtension)")
                         }
                     }
                 }
             }
             return true
         }
+        
         .fileImporter(isPresented: $showPicker, allowedContentTypes: [.image], allowsMultipleSelection: true) { result in
             do {
                 let urls = try result.get()  // ✅ Get multiple file URLs
