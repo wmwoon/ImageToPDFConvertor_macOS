@@ -2,16 +2,62 @@ import SwiftUI
 import PDFKit
 import UniformTypeIdentifiers
 
+func mergePDFs(pdfURLs: [URL], outputURL: URL) {
+    let mergedPDF = PDFDocument()
+
+    for pdfURL in pdfURLs {
+        if let pdfDocument = PDFDocument(url: pdfURL) {
+            for pageIndex in 0..<pdfDocument.pageCount {
+                if let page = pdfDocument.page(at: pageIndex) {
+                    mergedPDF.insert(page, at: mergedPDF.pageCount)
+                }
+            }
+        } else {
+            print("❌ Failed to load PDF: \(pdfURL.path)")
+        }
+    }
+
+    if mergedPDF.pageCount > 0 {
+        if mergedPDF.write(to: outputURL) {
+            print("✅ Merged PDF saved to: \(outputURL.path)")
+        } else {
+            print("❌ Failed to save merged PDF.")
+        }
+    } else {
+        print("⚠️ No pages found to merge!")
+    }
+}
+
 struct ContentView: View {
     @State private var images: [NSImage] = []
     @State private var showPicker = false
     @State private var draggingIndex: Int? = nil
+    @State private var showPDFPicker = false
+    @State private var selectedPDFs: [URL] = []
+    @State private var isTargeted: Bool = false
     
     var body: some View {
         VStack {
-            if images.isEmpty {
-                Text("Drag and drop images or select them")
+            Text("Drag & Drop PDFs or Images Here")
+                    .font(.title2)
                     .padding()
+                    .background(isTargeted ? Color.blue.opacity(0.2) : Color.clear)
+                    .cornerRadius(10)
+            if !selectedPDFs.isEmpty {
+                VStack {
+                    Text("Selected PDFs:")
+                        .font(.headline)
+                        .padding(.top)
+
+                    List(selectedPDFs, id: \.self) { pdfURL in
+                        Text(pdfURL.lastPathComponent)
+                            .onDrag {
+                                return NSItemProvider(object: pdfURL.absoluteString as NSString) // 🔥 Make PDF draggable
+                            }
+                    }
+                    .frame(height: 150) // Adjust height as needed
+                }
+                .padding()
             } else {
                 VStack {
                     ForEach(Array(images.enumerated()), id: \.element) { index, image in
@@ -29,7 +75,7 @@ struct ContentView: View {
                     }
                 }
             }
-
+            
             HStack {
                 Button("Select Images") {
                     showPicker = true
@@ -42,19 +88,36 @@ struct ContentView: View {
                 .disabled(images.isEmpty)
                 .padding()
                 
+                Button("Select PDFs to Merge") {
+                    showPDFPicker = true
+                }
+                .padding()
+                
+                Button("Merge PDFs") {
+                    guard !selectedPDFs.isEmpty else {
+                        print("⚠️ No PDFs selected for merging.")
+                        return
+                    }
+                    
+                    let outputPDF = URL(fileURLWithPath: "/Users/waimeng/Desktop/merged.pdf")
+                    mergePDFs(pdfURLs: selectedPDFs, outputURL: outputPDF)
+                }
+                .padding()
+                
                 Button("Clear Selection") {
                     images.removeAll()
+                    selectedPDFs.removeAll()
                 }
-                .disabled(images.isEmpty)
+                .disabled(images.isEmpty && selectedPDFs.isEmpty)
                 .padding()
             }
-
+            
             // 🔥 Drag-to-delete trash area
-            TrashArea(images: $images, draggingIndex: $draggingIndex)
+            TrashArea(images: $images, draggingIndex: $draggingIndex, selectedPDFs: $selectedPDFs)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .contentShape(Rectangle())
-        .onDrop(of: [UTType.fileURL.identifier], isTargeted: nil) { providers in
+        .onDrop(of: [UTType.fileURL.identifier], isTargeted: $isTargeted) { providers in
             for provider in providers {
                 provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { (data, error) in
                     DispatchQueue.main.async {
@@ -67,19 +130,11 @@ struct ContentView: View {
                         let fileExtension = fileURL.pathExtension.lowercased()
                         print("🔍 File extension detected: \(fileExtension)")
 
-                        let supportedExtensions = ["jpg", "jpeg", "png", "tiff", "bmp", "gif"]
-                        if supportedExtensions.contains(fileExtension) {
-                            print("✅ Successfully dropped file: \(fileURL.path)")
-
-                            if FileManager.default.fileExists(atPath: fileURL.path) {
-                                print("📂 File exists, trying to access it...")
-                            } else {
-                                print("⚠️ File does not exist!")
-                            }
-
+                        let imageExtensions = ["jpg", "jpeg", "png", "tiff", "bmp", "gif"]
+                        if imageExtensions.contains(fileExtension) {
+                            print("✅ Successfully dropped image: \(fileURL.path)")
                             if fileURL.startAccessingSecurityScopedResource() {
                                 defer { fileURL.stopAccessingSecurityScopedResource() }
-
                                 if let image = NSImage(contentsOf: fileURL) {
                                     images.append(image)
                                 } else {
@@ -88,6 +143,9 @@ struct ContentView: View {
                             } else {
                                 print("⚠️ Failed to access security-scoped resource - Check App Sandbox settings!")
                             }
+                        } else if fileExtension == "pdf" {
+                            print("✅ Successfully dropped PDF: \(fileURL.path)")
+                            selectedPDFs.append(fileURL)
                         } else {
                             print("⚠️ Unsupported file type: \(fileExtension.isEmpty ? "Unknown" : fileExtension)")
                         }
@@ -109,6 +167,17 @@ struct ContentView: View {
                 }
             } catch {
                 print("Failed to load images:", error.localizedDescription)
+            }
+        }
+        
+        .fileImporter(isPresented: $showPDFPicker, allowedContentTypes: [.pdf], allowsMultipleSelection: true) { result in
+            DispatchQueue.main.async {
+                do {
+                    selectedPDFs = try result.get()  // ✅ Assign selected PDFs
+                    print("📂 Selected PDFs: \(selectedPDFs.map { $0.path })")
+                } catch {
+                    print("❌ Failed to import PDFs:", error.localizedDescription)
+                }
             }
         }
         .padding()
@@ -161,6 +230,7 @@ struct DropViewDelegate: DropDelegate {
 struct TrashArea: View {
     @Binding var images: [NSImage]
     @Binding var draggingIndex: Int?
+    @Binding var selectedPDFs: [URL]
     
     var body: some View {
         Text("🗑️ Drag here to delete")
@@ -169,21 +239,34 @@ struct TrashArea: View {
             .background(Color.red.opacity(0.7))
             .cornerRadius(10)
             .padding()
-            .onDrop(of: [UTType.text.identifier], isTargeted: nil) { providers in
+            .onDrop(of: [UTType.text.identifier, UTType.fileURL.identifier], isTargeted: nil) { providers in
                 if let draggingIndex = draggingIndex {
                     DispatchQueue.main.async {
-                        images.remove(at: draggingIndex)  // 🔥 Delete image
+                        images.remove(at: draggingIndex)
                         self.draggingIndex = nil
                     }
                     return true
                 }
-                return false
-            }
-    }
-}
+                
+                // 🔥 Handle PDFs
+                for provider in providers {
+                    provider.loadItem(forTypeIdentifier: UTType.fileURL.identifier, options: nil) { (data, error) in
+                        DispatchQueue.main.async {
+                            guard let data = data as? Data,
+                                  let fileURL = URL(dataRepresentation: data, relativeTo: nil) else {
+                                print("⚠️ Failed to retrieve PDF file URL")
+                                return
+                            }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+                            // 🗑️ Remove PDF if it's in the list
+                            if let index = selectedPDFs.firstIndex(of: fileURL) {
+                                selectedPDFs.remove(at: index)
+                                print("🗑️ Deleted PDF: \(fileURL.lastPathComponent)")
+                            }
+                        }
+                    }
+                }
+                return true
+            }
     }
 }
