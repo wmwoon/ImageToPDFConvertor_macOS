@@ -9,8 +9,10 @@ struct ContentView: View {
     @State private var showPDFPicker = false
     @State private var selectedPDFs: [URL] = []
     @State private var isTargeted: Bool = false
-    private let pdfMerger = PDFMerger() // ✅ Create an instance
-
+    private let pdfManager = PDFManager()
+    @State private var draggingPDFIndex: Int? = nil
+    @State private var draggingImageIndex: Int? = nil
+    
     // ✅ Keep savePDF inside ContentView
     func savePDF() {
         let pdf = PDFDocument()
@@ -37,46 +39,61 @@ struct ContentView: View {
                 .padding()
                 .background(isTargeted ? Color.blue.opacity(0.2) : Color.clear)
                 .cornerRadius(10)
-
+            
             if !selectedPDFs.isEmpty {
                 VStack {
                     Text("Selected PDFs:")
                         .font(.headline)
                         .padding(.top)
-
+                    
+                    // Replace your PDF list in ContentView with this:
                     List {
-                            ForEach(Array(selectedPDFs.enumerated()), id: \.element) { index, pdfURL in
+                        ForEach(Array(selectedPDFs.enumerated()), id: \.element.path) { index, pdfURL in
+                            HStack {
                                 Text(pdfURL.lastPathComponent)
                                     .padding()
-                                    .background(draggingIndex == index ? Color.gray.opacity(0.3) : Color.clear)
-                                    .onDrag {
-                                        draggingIndex = index
-                                        return NSItemProvider(object: "\(index)" as NSString)
-                                    }
-                                    .onDrop(of: [UTType.text.identifier], delegate: PDFDropDelegate(index: index, selectedPDFs: $selectedPDFs, draggingIndex: $draggingIndex))
                             }
+                            .background(draggingPDFIndex == index ? Color.gray.opacity(0.3) : Color.clear)
+                            .contentShape(Rectangle())
+                            .onDrag {
+                                print("📄 Dragging PDF at index \(index)")
+                                self.draggingPDFIndex = index
+                                self.draggingIndex = index  // Keep this for compatibility with TrashArea
+                                
+                                let provider = NSItemProvider(object: "\(index)" as NSString)
+                                provider.suggestedName = "pdf-\(index)"  // Add a hint that this is a PDF
+                                return provider
+                            }
+                            .onDrop(of: [UTType.text.identifier], delegate: PDFDropDelegate(index: index, selectedPDFs: $selectedPDFs, draggingIndex: $draggingPDFIndex))
                         }
+                    }
+                    .frame(height: 150)
+                    .padding()
                     .frame(height: 150)
                     .padding()
                 }
             } else if !images.isEmpty {
-                VStack {
-                    ForEach(Array(images.enumerated()), id: \.element) { index, image in
-                        Image(nsImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 100)
-                            .padding()
-                            .background(draggingIndex == index ? Color.gray.opacity(0.3) : Color.clear)
-                            .onDrag {
-                                draggingIndex = index
-                                return NSItemProvider(object: "\(index)" as NSString)
-                            }
-                            .onDrop(of: [UTType.text.identifier], delegate: DropViewDelegate(index: index, images: $images, draggingIndex: $draggingIndex))
-                    }
+                ForEach(Array(images.enumerated()), id: \.element) { index, image in
+                    Image(nsImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 100)
+                        .padding()
+                        .background(draggingImageIndex == index ? Color.gray.opacity(0.3) : Color.clear)
+                        .onDrag {
+                            print("🖼️ Dragging image at index \(index)")
+                            self.draggingImageIndex = index
+                            self.draggingIndex = index  // Keep this for compatibility with TrashArea
+                            
+                            let provider = NSItemProvider(object: "\(index)" as NSString)
+                            provider.suggestedName = "image-\(index)"  // Add a hint that this is an image
+                            return provider
+                        }
+                        .onDrop(of: [UTType.text.identifier], delegate: DropViewDelegate(index: index, images: $images, draggingIndex: $draggingImageIndex))
+                    
                 }
             }
-
+            
             HStack {
                 Button("Select Images") {
                     showPicker = true
@@ -84,8 +101,11 @@ struct ContentView: View {
                 .padding()
                 
                 Button("Convert to PDF") {
-                    savePDF()
-                }
+                    guard !images.isEmpty else { return }
+                    
+                    if let pdf = pdfManager.createPDFFromImages(images: images) {
+                        pdfManager.savePDF(pdf, defaultName: "ConvertedImages.pdf")
+                    }                }
                 .disabled(images.isEmpty)
                 .padding()
                 
@@ -99,7 +119,7 @@ struct ContentView: View {
                         print("⚠️ No PDFs selected for merging.")
                         return
                     }
-                    pdfMerger.mergePDFs(pdfURLs: selectedPDFs)
+                    pdfManager.mergePDFs(pdfURLs: selectedPDFs)
                 }
                 .padding()
                 
@@ -124,10 +144,10 @@ struct ContentView: View {
                             print("⚠️ Failed to retrieve file URL")
                             return
                         }
-
+                        
                         let fileExtension = fileURL.pathExtension.lowercased()
                         print("🔍 File extension detected: \(fileExtension)")
-
+                        
                         let imageExtensions = ["jpg", "jpeg", "png", "tiff", "bmp", "gif"]
                         if imageExtensions.contains(fileExtension) {
                             print("✅ Successfully dropped image: \(fileURL.path)")
@@ -148,6 +168,7 @@ struct ContentView: View {
             }
             return true
         }
+        //Image file importer
         .fileImporter(isPresented: $showPicker, allowedContentTypes: [.image], allowsMultipleSelection: true) { result in
             do {
                 let urls = try result.get()
@@ -163,19 +184,50 @@ struct ContentView: View {
                 print("❌ Failed to load images:", error.localizedDescription)
             }
         }
+        //PDF file importer
         .fileImporter(isPresented: $showPDFPicker, allowedContentTypes: [.pdf], allowsMultipleSelection: true) { result in
             DispatchQueue.main.async {
                 do {
-                    selectedPDFs = try result.get()
-                    print("📂 Selected PDFs: \(selectedPDFs.map { $0.path })")
+                    let urls = try result.get()
+                    print("📂 Selected \(urls.count) PDFs")
+                    
+                    // Store PDF URLs with security scope bookmarks
+                    for url in urls {
+                        if url.startAccessingSecurityScopedResource() {
+                            selectedPDFs.append(url)
+                            // Create a bookmark for persistent access
+                            /*       do {
+                             let bookmarkData = try url.bookmarkData(options: .minimalBookmark, includingResourceValuesForKeys: nil, relativeTo: nil)
+                             // You could store these bookmarks in UserDefaults if needed for persistence across app launches
+                             print("✅ Created security-scoped bookmark for: \(url.lastPathComponent)")
+                             
+                             // Add to selected PDFs
+                             selectedPDFs.append(url)
+                             
+                             // Keep accessing for now, will stop when app is done with the file
+                             // url.stopAccessingSecurityScopedResource() - Don't call this yet as we need access throughout the app session
+                             } catch {
+                             print("❌ Failed to create bookmark: \(error.localizedDescription)")
+                             url.stopAccessingSecurityScopedResource()
+                             }*/
+                        } else {
+                            print("⚠️ Failed to access security-scoped resource: \(url.path)")
+                        }
+                    }
                 } catch {
-                    print("❌ Failed to import PDFs:", error.localizedDescription)
+                    print("❌ Failed to import PDFs: \(error.localizedDescription)")
                 }
             }
         }
         .padding()
     }
-
+    
+    func stopAccessingAllPDFs() {
+        for url in selectedPDFs {
+            url.stopAccessingSecurityScopedResource()
+        }
+    }
+    
     func movePDF(from source: IndexSet, to destination: Int) {
         selectedPDFs.move(fromOffsets: source, toOffset: destination)
     }

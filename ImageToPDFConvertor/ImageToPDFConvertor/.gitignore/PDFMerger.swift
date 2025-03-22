@@ -7,10 +7,10 @@ class PDFMerger {
         savePanel.allowedContentTypes = [.pdf]
         savePanel.nameFieldStringValue = "MergedDocument.pdf"
         savePanel.prompt = "Save Merged PDF"
-
+        
         if savePanel.runModal() == .OK, let outputURL = savePanel.url {
             let mergedPDF = PDFDocument()
-
+            
             for pdfURL in pdfURLs {
                 if let pdfDocument = PDFDocument(url: pdfURL) {
                     for pageIndex in 0..<pdfDocument.pageCount {
@@ -22,7 +22,7 @@ class PDFMerger {
                     print("❌ Failed to load PDF: \(pdfURL.path)")
                 }
             }
-
+            
             if mergedPDF.pageCount > 0 {
                 if mergedPDF.write(to: outputURL) {
                     print("✅ Merged PDF saved to: \(outputURL.path)")
