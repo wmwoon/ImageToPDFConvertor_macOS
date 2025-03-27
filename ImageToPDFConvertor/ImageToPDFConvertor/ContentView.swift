@@ -94,6 +94,8 @@ struct ContentView: View {
                 }
             }
             
+            Spacer()
+            
             HStack {
                 Button("Select Images") {
                     showPicker = true
@@ -105,7 +107,8 @@ struct ContentView: View {
                     
                     if let pdf = pdfManager.createPDFFromImages(images: images) {
                         pdfManager.savePDF(pdf, defaultName: "ConvertedImages.pdf")
-                    }                }
+                    }
+                }
                 .disabled(images.isEmpty)
                 .padding()
                 
@@ -132,6 +135,7 @@ struct ContentView: View {
             }
             
             TrashArea(images: $images, draggingIndex: $draggingIndex, selectedPDFs: $selectedPDFs)
+                .padding(.bottom, 20)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .contentShape(Rectangle())
@@ -168,10 +172,12 @@ struct ContentView: View {
             }
             return true
         }
+        
         //Image file importer
         .fileImporter(isPresented: $showPicker, allowedContentTypes: [.image], allowsMultipleSelection: true) { result in
             do {
                 let urls = try result.get()
+                
                 for url in urls {
                     if url.startAccessingSecurityScopedResource() {
                         if let image = NSImage(contentsOf: url) {
@@ -184,6 +190,7 @@ struct ContentView: View {
                 print("❌ Failed to load images:", error.localizedDescription)
             }
         }
+        
         //PDF file importer
         .fileImporter(isPresented: $showPDFPicker, allowedContentTypes: [.pdf], allowsMultipleSelection: true) { result in
             DispatchQueue.main.async {
