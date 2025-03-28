@@ -1,6 +1,8 @@
 # 📄 PDF & Image Converter
 
 ## 🚀 Overview
+![Screenshot 2025-03-28 at 15 14 59](https://github.com/user-attachments/assets/07c09142-6b6d-4683-9bd6-bbd83ec5acec)
+
 A powerful macOS application that simplifies PDF and image management with intuitive drag-and-drop functionality.
 
 ## ✨ Features
