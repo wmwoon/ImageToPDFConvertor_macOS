@@ -24,6 +24,7 @@ A powerful macOS application that simplifies PDF and image management with intui
 1. Clone the repository
 2. Open the project in Xcode
 3. Build and run the application
+4. Right-click on the link above and download the completed app to run this on your Mac
 
 ## 🎮 Usage
 
