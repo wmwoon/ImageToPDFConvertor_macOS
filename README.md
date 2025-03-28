@@ -1,7 +1,6 @@
 # 📄 PDF & Image Converter
 
 ## 🚀 Overview
-/Users/waimeng/Desktop/Screenshot 2025-03-28 at 15.14.59.png
 A powerful macOS application that simplifies PDF and image management with intuitive drag-and-drop functionality.
 
 ## ✨ Features
