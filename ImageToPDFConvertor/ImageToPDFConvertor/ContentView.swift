@@ -98,6 +98,7 @@ struct ContentView: View {
             
             HStack {
                 Button("Select Images") {
+                    print("📂 Select Images button tapped")
                     showPicker = true
                 }
                 .padding()
