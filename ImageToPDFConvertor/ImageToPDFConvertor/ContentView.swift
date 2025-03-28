@@ -2,6 +2,30 @@ import SwiftUI
 import PDFKit
 import UniformTypeIdentifiers
 
+// Extension is placed OUTSIDE the ContentView struct
+extension ContentView {
+    func selectImages() {
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = true
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.allowedContentTypes = [.image]
+        
+        openPanel.begin { result in
+            if result == .OK {
+                for url in openPanel.urls {
+                    if let image = NSImage(contentsOf: url) {
+                        DispatchQueue.main.async {
+                            self.images.append(image)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 struct ContentView: View {
     @State private var images: [NSImage] = []
     @State private var showPicker = false
@@ -34,11 +58,20 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Drag & Drop PDFs or Images Here")
-                .font(.title2)
-                .padding()
-                .background(isTargeted ? Color.blue.opacity(0.2) : Color.clear)
-                .cornerRadius(10)
+          /*  HStack{
+                Spacer()
+                Text("Drop Images or PDFs Here")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.gray)
+                    .padding()
+                 //   .background(isTargeted ? Color.blue.opacity(0.2) : Color.clear)
+                //    .cornerRadius(10)
+            //
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)*/
+             
             
             if !selectedPDFs.isEmpty {
                 VStack {
@@ -98,8 +131,10 @@ struct ContentView: View {
             
             HStack {
                 Button("Select Images") {
-                    print("📂 Select Images button tapped")
-                    showPicker = true
+                    selectImages()
+//                    print("📂 Select Images button tapped")
+  //                  showPicker = true
+    //                print("📂 showPicker after tap: \(showPicker)")
                 }
                 .padding()
                 
@@ -138,6 +173,14 @@ struct ContentView: View {
             TrashArea(images: $images, draggingIndex: $draggingIndex, selectedPDFs: $selectedPDFs)
                 .padding(.bottom, 20)
         }
+        .background(
+            Text("Drop images or PDFs here")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(Color.gray)
+                .opacity(0.3)
+                .padding()
+        )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .contentShape(Rectangle())
         .onDrop(of: [UTType.fileURL.identifier], isTargeted: $isTargeted) { providers in
@@ -153,7 +196,7 @@ struct ContentView: View {
                         let fileExtension = fileURL.pathExtension.lowercased()
                         print("🔍 File extension detected: \(fileExtension)")
                         
-                        let imageExtensions = ["jpg", "jpeg", "png", "tiff", "bmp", "gif"]
+                        let imageExtensions = ["jpg", "jpeg", "png", "tiff", "bmp", "gif", "heic"]
                         if imageExtensions.contains(fileExtension) {
                             print("✅ Successfully dropped image: \(fileURL.path)")
                             if fileURL.startAccessingSecurityScopedResource() {
@@ -172,24 +215,6 @@ struct ContentView: View {
                 }
             }
             return true
-        }
-        
-        //Image file importer
-        .fileImporter(isPresented: $showPicker, allowedContentTypes: [.image], allowsMultipleSelection: true) { result in
-            do {
-                let urls = try result.get()
-                
-                for url in urls {
-                    if url.startAccessingSecurityScopedResource() {
-                        if let image = NSImage(contentsOf: url) {
-                            images.append(image)
-                        }
-                        url.stopAccessingSecurityScopedResource()
-                    }
-                }
-            } catch {
-                print("❌ Failed to load images:", error.localizedDescription)
-            }
         }
         
         //PDF file importer
