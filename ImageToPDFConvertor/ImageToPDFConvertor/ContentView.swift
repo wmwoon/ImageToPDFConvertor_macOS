@@ -58,21 +58,6 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-          /*  HStack{
-                Spacer()
-                Text("Drop Images or PDFs Here")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.gray)
-                    .padding()
-                 //   .background(isTargeted ? Color.blue.opacity(0.2) : Color.clear)
-                //    .cornerRadius(10)
-            //
-                Spacer()
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)*/
-             
-            
             if !selectedPDFs.isEmpty {
                 VStack {
                     Text("Selected PDFs:")
@@ -132,9 +117,6 @@ struct ContentView: View {
             HStack {
                 Button("Select Images") {
                     selectImages()
-//                    print("📂 Select Images button tapped")
-  //                  showPicker = true
-    //                print("📂 showPicker after tap: \(showPicker)")
                 }
                 .padding()
                 
@@ -228,21 +210,6 @@ struct ContentView: View {
                     for url in urls {
                         if url.startAccessingSecurityScopedResource() {
                             selectedPDFs.append(url)
-                            // Create a bookmark for persistent access
-                            /*       do {
-                             let bookmarkData = try url.bookmarkData(options: .minimalBookmark, includingResourceValuesForKeys: nil, relativeTo: nil)
-                             // You could store these bookmarks in UserDefaults if needed for persistence across app launches
-                             print("✅ Created security-scoped bookmark for: \(url.lastPathComponent)")
-                             
-                             // Add to selected PDFs
-                             selectedPDFs.append(url)
-                             
-                             // Keep accessing for now, will stop when app is done with the file
-                             // url.stopAccessingSecurityScopedResource() - Don't call this yet as we need access throughout the app session
-                             } catch {
-                             print("❌ Failed to create bookmark: \(error.localizedDescription)")
-                             url.stopAccessingSecurityScopedResource()
-                             }*/
                         } else {
                             print("⚠️ Failed to access security-scoped resource: \(url.path)")
                         }

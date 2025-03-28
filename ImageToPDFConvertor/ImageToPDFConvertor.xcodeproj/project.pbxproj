@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EBA300672D9681FE00EB645D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EBA300662D9681FE00EB645D /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EBD62BDA2D85612D007D3D25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EBA300662D9681FE00EB645D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		EBD62BC82D85612C007D3D25 /* ImageToPDFConvertor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageToPDFConvertor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD62BD92D85612D007D3D25 /* ImageToPDFConvertorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageToPDFConvertorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD62BE32D85612D007D3D25 /* ImageToPDFConvertorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageToPDFConvertorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +80,7 @@
 		EBD62BBF2D85612C007D3D25 = {
 			isa = PBXGroup;
 			children = (
+				EBA300662D9681FE00EB645D /* README.md */,
 				EBD62BCA2D85612C007D3D25 /* ImageToPDFConvertor */,
 				EBD62BDC2D85612D007D3D25 /* ImageToPDFConvertorTests */,
 				EBD62BE62D85612D007D3D25 /* ImageToPDFConvertorUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBA300672D9681FE00EB645D /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
