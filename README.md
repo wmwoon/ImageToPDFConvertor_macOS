@@ -3,7 +3,10 @@
 ## 🚀 Overview
 ![Screenshot 2025-03-28 at 15 14 59](https://github.com/user-attachments/assets/07c09142-6b6d-4683-9bd6-bbd83ec5acec)
 
-A powerful macOS application that simplifies PDF and image management with intuitive drag-and-drop functionality.
+A convenient macOS application that simplifies PDF and image management with intuitive drag-and-drop functionality.
+I made this so that I can work a little faster by not using macOS Preview at all to combine images or PDFs into a single document. Unless I absolutely have to rearrange the pages within the PDF, otherwise I wouldn't want to open Preview and click through a series of actions before I finally save a PDF of images or merged PDFs.
+
+Hope this tool helps someone out there as well.
 
 ## ✨ Features
 
@@ -24,7 +27,7 @@ A powerful macOS application that simplifies PDF and image management with intui
 1. Clone the repository
 2. Open the project in Xcode
 3. Build and run the application
-4. Right-click on the link above and download the completed app to run this on your Mac
+4. Or simply download from here -> https://github.com/wmwoon/ImageToPDFConvertor_macOS/discussions/1, to start using the app.
 
 ## 🎮 Usage
 
