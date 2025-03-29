@@ -49,3 +49,4 @@ Hope this tool helps someone out there as well.
 2. Click "Merge PDFs"
 3. Choose a save location
 
+### Disclaimer: This project was developed with the assistance of AI tools, including code generation and documentation suggestions. Manual review and testing have been performed to ensure accuracy.
